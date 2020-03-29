@@ -1,0 +1,22 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{	
+			"path": "pages/main/index",
+			"style": {
+				//"navigationBarTitleText": "QM音乐"
+			}
+		},
+		{
+			"path": "pages/search/index",
+			"style": {
+				//"navigationBarTitleText": "QM音乐"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "QM音乐",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

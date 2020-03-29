@@ -1,0 +1,1 @@
+exports.baseurl  = "https://netease.lzcdev.xyz/"
