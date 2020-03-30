@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/main/index",
+    "pages/jm-search/jm-search",
+    "pages/menu/index",
+    "pages/rankingList/index",
+    "pages/songSheet/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "QM音乐",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

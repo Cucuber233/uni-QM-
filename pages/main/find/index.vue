@@ -40,15 +40,16 @@
 				this.songInfo = res.data.result
 				//console.log(this.songInfo)
 			})
+			//获取新歌信息
 			$http('personalized/newsong').then(res => {
 				this.songNew = res.data.result
 				//console.log(this.songNew)
 			})
+			//获取新碟信息
 			$http('album/newest').then(res => {
 				this.releasesNew = res.data.albums
-				console.log(this.releasesNew)
+				//console.log(this.releasesNew)
 			})
-			
 		},
 		data(){
 			return{
@@ -63,9 +64,9 @@
 	
 <style scoped>
 	.footer_title{
-		font-size: 40upx;
+		font-size: 35upx;
 		font-weight: 800;
-		opacity: .3;
+		opacity: .2;
 		display: flex;
 		justify-content: center;
 	}

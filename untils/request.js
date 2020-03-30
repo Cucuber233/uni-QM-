@@ -2,10 +2,10 @@ import { baseurl } from './api.js'
 
 //const baseurl  = "https://netease.lzcdev.xyz/"
 
-export default function $http(url){
+export default function $http(path){
 	return new Promise((resolve, reject) => {
 		 uni.request({
-			url: baseurl + url,
+			url: baseurl + path,
 			method:'GET',
 			success(res) {
 				resolve(res)

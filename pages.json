@@ -3,13 +3,31 @@
 		{	
 			"path": "pages/main/index",
 			"style": {
-				//"navigationBarTitleText": "QM音乐"
+				"navigationBarTitleText": "QM音乐"
 			}
 		},
 		{
-			"path": "pages/search/index",
+			"path": "pages/jm-search/jm-search",
 			"style": {
-				//"navigationBarTitleText": "QM音乐"
+				"navigationBarTitleText": "搜索"
+			}
+		},
+		{
+			"path": "pages/menu/index",
+			"style": {
+				"navigationBarTitleText": "菜单"
+			}
+		},
+		{
+			"path": "pages/rankingList/index",
+			"style": {
+				"navigationBarTitleText": "排行榜"
+			}
+		},
+		{
+			"path": "pages/songSheet/index",
+			"style": {
+				"navigationBarTitleText": "歌单"
 			}
 		}
 	],

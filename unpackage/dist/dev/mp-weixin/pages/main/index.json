@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "QM音乐",
+  "usingComponents": {
+    "main-find": "/pages/main/find/index",
+    "main-firend": "/pages/main/firend/index",
+    "main-my": "/pages/main/my/index",
+    "main-video": "/pages/main/video/index"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tab-nav": "/components/tab_nav/main_nav",
+    "swiper-find": "/pages/main/find/swiper/index",
+    "recommend-song": "/pages/main/find/recommendSong/index",
+    "new-song": "/pages/main/find/newSong/index",
+    "new-releases": "/pages/main/find/newReleases/index"
+  }
+}

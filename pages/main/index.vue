@@ -1,6 +1,9 @@
 <template>
 	<view class="main">
 		<view class="nav_wrap" style="margin: 10upx 0 10upx 0;">
+			<view class="img_menu" @click="menu_">
+				<image src="../../static/find/caidan.png" mode="widthFix"></image>
+			</view>
 		    <scroll-view scroll-x='ture'>
 		      <view :class="currentTab == 0 ? 'nav_item_active' : ''"  @click="swichNav(0)">
 		        我的
@@ -15,8 +18,8 @@
 		        视频
 		      </view>
 		    </scroll-view>
-			<view class="search" @click="search">
-				框
+			<view class="search" @click="search_choose">
+				<image src="../../static/find/sousuo.png" mode="widthFix"></image>
 			</view>
 		</view>	
 		<swiper style='width:100%; height:3920upx' :indicator-dots="false" :autoplay="false" :interval="3000" :duration="500" :current='currentTab'>
@@ -27,7 +30,7 @@
 			</swiper-item>
 			<swiper-item>
 				<view class="swiper_item">
-					<main-find @click='choose_height(data)' />
+					<main-find />
 				</view>
 			</swiper-item>
 			<swiper-item>
@@ -50,6 +53,7 @@
 	import mainFirend from './firend/index.vue'
 	import mainMy from './my/index.vue'
 	import mainVideo from './video/index.vue'
+	import serve from '../../untils/search.js'
 	
 	export default{
 		name: 'main_',
@@ -65,16 +69,32 @@
 				chooseHeight: null
 			}
 		},
-		onLoad() {
-		
-		},
 		methods: {
 			swichNav(i){
 				this.currentTab = i
-			},	
-			choose_height(height_){
-				
-			}		
+			},
+			search_choose(){
+				uni.navigateTo({
+					url: '../jm-search/jm-search',
+					success() {
+						console.log('跳转搜索页面')
+					},
+					fail() {
+						console.log("跳转失败")
+					}
+				})
+			},
+			menu_(){
+				uni.navigateTo({
+					url: '../menu/index',
+					success() {
+						consolve.log('跳转菜单页面')
+					},
+					fail() {
+						consolve.log('跳转菜单页面失败')	
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -83,14 +103,13 @@
 	.nav_wrap{
 		display: flex;
 		font-size: 43upx;
+		align-items: center;
 	}
 	.nav_wrap view{
 		display: inline-block;
-		margin-left: 70upx;
+		margin-left: 55rpx;
 	}	
-	.nav_wrap .search{
-		
-	}
+	
 	.nav_item_active{
 		font-size: 45upx;
 		font-weight: 800;
@@ -99,4 +118,23 @@
 		width: 100%;
 		height: 3920upx;
 	} */
+	
+	.main .nav_wrap .img_menu{
+		display: flex;
+		align-items: center;
+		margin-left: 0;
+		width: 80rpx;
+		height: 100rpx;
+	}
+	.main .nav_wrap .search{
+		display: flex;
+		align-items: center;
+		margin-right: 20rpx;
+		width: 80rpx;
+		height: 30rpx;
+	}
+	.main .nav_wrap image{
+		width: 100%;
+		height: 100%;
+	}
 </style>

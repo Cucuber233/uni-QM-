@@ -17,12 +17,6 @@
 		props: {
 			img_data: Array
 		},
-		onLoad() {
-			
-		},
-		methods:{
-			
-		},
 		data(){
 			return{
 				

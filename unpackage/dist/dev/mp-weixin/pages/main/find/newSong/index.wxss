@@ -1,0 +1,93 @@
+
+.songSheet_title_wrap.data-v-3d73fccd {
+	  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: flex;
+	  -webkit-flex-wrap: wrap;
+	          flex-wrap: wrap;
+	  padding-top: 20rpx;
+	  width: 94%;
+	  -webkit-box-pack: justify;
+	  -webkit-justify-content: space-between;
+	          justify-content: space-between;
+	  margin-left: 3%;
+}
+.newest_title.data-v-3d73fccd {
+	  padding: 20rpx 0;
+}
+.newest_title text.data-v-3d73fccd {
+	  font-size: 40rpx;
+	  font-weight: 800;
+	  color: black;
+}
+.songSheet_square.data-v-3d73fccd {
+	  margin: 20rpx 0;
+	  width: 130rpx;
+	  height: 40rpx;
+	  line-height: 31rpx;
+	  border: 1px solid #666;
+	  border-radius: 20rpx;
+	  text-align: center;
+}
+.songSheet_square text.data-v-3d73fccd {
+	  font-size: 23rpx;
+}
+	
+	/* ------------------------------------------- */
+.songSheet_wrap.data-v-3d73fccd {
+	  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: flex;
+	  -webkit-flex-wrap: wrap;
+	          flex-wrap: wrap;
+	  padding: 5rpx;
+	  -webkit-justify-content: space-around;
+	          justify-content: space-around;
+}
+.songSheet_wrap_active.data-v-3d73fccd {
+	  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: flex;
+	  -webkit-flex-wrap: wrap;
+	          flex-wrap: wrap;
+	  padding: 5rpx;
+	  -webkit-justify-content: space-around;
+	          justify-content: space-around;
+	  margin-bottom: 100rpx;
+}
+.songSheet_item.data-v-3d73fccd {
+	  width: 30%;
+	  margin-bottom: 20rpx;
+}
+.songSheet_img.data-v-3d73fccd {
+	  position: relative;
+}
+.songSheet_img image.data-v-3d73fccd {
+	  width: 100%;
+	  border-radius: 15rpx;
+}
+.songSheet_img .songSheet_info.data-v-3d73fccd {
+	  position: absolute;
+	  top: 5rpx;
+	  right: 5rpx;
+	  width: 100%;
+	  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: flex;
+	  -webkit-box-pack: end;
+	  -webkit-justify-content: flex-end;
+	          justify-content: flex-end;
+	  color: #fff;
+	  font-size: 24rpx;
+}
+.songSheet_titles.data-v-3d73fccd {
+		font-size: 28rpx;
+		display: -webkit-box;
+		overflow: hidden;
+		white-space: normal;
+		text-overflow: ellipsis;
+		word-wrap: break-word;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+}
+

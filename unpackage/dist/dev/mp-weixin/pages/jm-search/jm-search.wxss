@@ -1,0 +1,114 @@
+
+page {
+	background: #FFF;
+}
+.ov {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	overflow: hidden;
+}
+.fl {
+	font-weight: 600;
+	opacity: .7;
+}
+.grace-search-remove {
+	width: 50rpx;
+	height: 50rpx;
+}
+.grace-search-remove .img_remove{
+	width: 100%;
+	height: 100%;
+}
+.searchTopBox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	width: 100%;
+	background-color: #0b877f;
+	height: 100rpx;
+	box-sizing: border-box;
+	padding-top: 15rpx;
+}
+.searchBoxRadius {
+	width: 90%;
+	height: 70rpx;
+	background-color: #fff;
+	margin-left: 5%;
+	overflow: hidden;
+	border-radius: 35rpx;
+}
+.searchBoxIcon {
+	font-size: 40rpx;
+	margin-top: 20rpx;
+	margin-left: 20rpx;
+	float: left;
+}
+.searchBoxIpt {
+	height: 70rpx;
+	line-height: 70rpx;
+	margin-left: 20rpx;
+	float: left;
+}
+.searchBotBox {
+	width: 100%;
+	margin-top: 30rpx;
+	padding: 15rpx 3%;
+	box-sizing: border-box;
+}
+.searchHistoryBox {
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin-top: 40rpx;
+}
+.searchHistoryBoxItem {
+	float: left;
+	font-size: 26rpx;
+	color: #666;
+	line-height: 46rpx;
+	height: 46rpx;
+	padding: 0 20rpx;
+	border-radius: 23rpx;
+	margin-left: 15rpx;
+	margin-bottom: 20rpx;
+	border: 1px solid #ccc;
+}
+.image_search{
+	position: absolute;
+	margin-top: 17rpx;
+	width: 42rpx;
+	height: 42rpx;
+}
+.search_show{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.search_item{
+	padding: 5rpx 0 5rpx 20rpx;
+	border: 1px solid #bdc3c7;
+	border-radius: 4%;
+	background-color: #ecf0f1;
+	width: 95%;
+}
+

@@ -1,0 +1,96 @@
+
+.officialList.data-v-44b194ac {
+    margin-left: 30rpx;
+}
+.officialList_title.data-v-44b194ac {
+    margin-top: 30rpx;
+    margin-bottom: 20rpx;
+}
+.officialList_title text.data-v-44b194ac {
+    font-size: 35rpx;
+    font-weight: 600;
+}
+.officialList_wrap.data-v-44b194ac {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.officialList_img.data-v-44b194ac {
+    width: 30%;
+    margin-bottom: 20rpx;
+    position: relative;
+}
+.officialList_img image.data-v-44b194ac {
+    width: 100%;
+    border-radius: 15rpx;
+}
+.officialList_img .officialList_info.data-v-44b194ac {
+    position: absolute;
+    left: 10rpx;
+    bottom: 20rpx;
+    width: 100%;
+    color: #fff;
+    font-size: 24rpx;
+}
+.officialList_desc.data-v-44b194ac {
+    width: 63%;
+    margin-left: 20rpx;
+    line-height: 70rpx;
+    margin-bottom: 40rpx;
+}
+.officialList_desc text.data-v-44b194ac {
+	margin-left: 4rpx;
+	opacity: .8;
+    font-size: 30rpx;
+    color: rgb(99, 97, 95);
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+/* 推荐榜 */
+.recommendationList_wrap.data-v-44b194ac {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.recommendationList_item.data-v-44b194ac {
+    width: 30%;
+    margin-bottom: 20rpx;
+    margin-right: 20rpx;
+}
+.recommendationList_img.data-v-44b194ac {
+    position: relative;
+}
+.recommendationList_img image.data-v-44b194ac {
+    width: 100%;
+    border-radius: 15rpx;
+}
+.recommendationList_img .recommendationList_info.data-v-44b194ac {
+    position: absolute;
+    left: 10rpx;
+    bottom: 20rpx;
+    width: 100%;
+    color: #fff;
+    font-size: 24rpx;
+}
+.recommendationList_titles.data-v-44b194ac {
+    font-size: 28rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
