@@ -29,6 +29,12 @@
 			"style": {
 				"navigationBarTitleText": "歌单"
 			}
+		},
+		{
+			"path": "pages/mv/index",
+			"style": {
+				"navigationBarTitleText": "视频MV"
+			}
 		}
 	],
 	"globalStyle": {

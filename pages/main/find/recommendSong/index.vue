@@ -12,7 +12,7 @@
 		
 		<view class="songSheet_wrap">
 		  <!-- 控制遍历数量6个 -->
-		  <view class="songSheet_item" v-for='(item, index) in info_song' :key='index'>
+		  <view @click="jump(item.id)" class="songSheet_item" v-for='(item, index) in info_song' :key='index'>
 			<!-- 图片容器 -->
 			<view class="songSheet_img">
 			  <!-- 图片 -->
@@ -41,6 +41,14 @@
 		name: 'recommendSong',
 		props: {
 			info_song: Array
+		},
+		methods:{
+			jump(id){
+				if(id){
+					console.log(11111)
+					uni.$emit('goJump', {id})
+				}
+			}
 		},
 		data(){
 			return{

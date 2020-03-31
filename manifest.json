@@ -57,7 +57,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wxf4eea051f8d726fc",
         "setting" : {
             "urlCheck" : false
         },
@@ -77,15 +77,16 @@
             "mode" : "history"
         },
         "devServer" : {
-		   "port": 8000,
-			   "disableHostCheck": true,
-			   "proxy": {
-				   "/dpc": {
-					   "target": "http://dpc.dapeis.net",
-					   "changeOrigin": true,
-					   "secure": false
-				    }
-			    }
-        }
+            "port" : 8000,
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/dpc" : {
+                    "target" : "http://dpc.dapeis.net",
+                    "changeOrigin" : true,
+                    "secure" : false
+                }
+            }
+        },
+        "domain" : "https://netease.lzcdev.xyz"
     }
 }

@@ -1,13 +1,13 @@
 <template>
 	<view class="find">
 		<!-- 轮播图 -->
-		<swiper-find :img_data='swiper_data'/>
+		<swiper-find :img_data='swiper_data' />
 		<!-- 菜单栏 -->
 		<tab-nav />	
 		<!-- 主要内容 -->
-		<recommend-song :info_song='songInfo'/>
+		<recommend-song :info_song='songInfo' />
 		<new-song :newSong='songNew' />
-		<new-releases :newReleases='releasesNew'/>
+		<new-releases :newReleases='releasesNew' />
 		<view class="footer_title">
 			<text>到底了</text>
 		</view>
@@ -50,6 +50,19 @@
 				this.releasesNew = res.data.albums
 				//console.log(this.releasesNew)
 			})
+		},
+		methods:{
+			jump(id){
+				uni.navigateTo({
+					url: '../../songSheet/index?id=' + id,
+					success() {
+						console.log('跳转歌单页面')
+					},
+					fail() {
+						console.log('跳转歌单页面失败')
+					}
+				})
+			}
 		},
 		data(){
 			return{

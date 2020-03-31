@@ -4,12 +4,28 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
-	"appid": "touristappid",
-	"projectname": "QM音乐",
+	"appid": "wxf4eea051f8d726fc",
+	"projectname": "QM%E9%9F%B3%E4%B9%90",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

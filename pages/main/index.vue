@@ -63,6 +63,19 @@
 			mainMy,
 			mainVideo
 		},
+		mounted(){
+			uni.$on('goJump', data => {
+				uni.navigateTo({
+					url: '../songSheet/index?id=' + data.id + '&type=0',
+					success() {
+						console.log('跳转歌单页面')
+					},
+					fail() {
+						console.log('跳转歌单额面失败')
+					}
+				})
+			})
+		},
 		data() {
 			return {
 				currentTab: 1,

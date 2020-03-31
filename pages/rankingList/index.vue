@@ -9,7 +9,7 @@
 		        <view class="officialList_title">
 		            <text>官方榜</text>
 		        </view>
-		        <view @click='jump(item.name)' @tap='jump(item.name)' class="officialList_wrap" v-for="(item, index) in official" :key='index'>
+		        <view @click='jump(item.name)' class="officialList_wrap" v-for="(item, index) in official" :key='index'>
 		            <view class="officialList_img">
 		                <image mode="widthFix" :src="item.coverImgUrl" />
 		                <view class="officialList_info">
@@ -31,7 +31,7 @@
 		            <text>推荐榜</text>
 		        </view>
 		        <view class="recommendationList_wrap">
-		            <view class="recommendationList_item" @click='jump(item.name)' @tap='jump(item.name)' v-for="(item, index) in recommend" :key='index'>
+		            <view class="recommendationList_item" @click='jump(item.name)' v-for="(item, index) in recommend" :key='index'>
 		                <view class="recommendationList_img">
 		                    <image mode="widthFix" :src="item.coverImgUrl" />
 		                    <view class="recommendationList_info">
@@ -52,7 +52,7 @@
 		            <text>全球榜</text>
 		        </view>
 		        <view class="recommendationList_wrap">
-		            <view class="recommendationList_item" @click='jump(item.name)' @tap='jump(item.name)' v-for="(item, index) in global_" :key='index'>
+		            <view class="recommendationList_item" @click='jump(item.name)' v-for="(item, index) in global_" :key='index'>
 		                <view class="recommendationList_img">
 		                    <image mode="widthFix" :src="item.coverImgUrl" />
 		                    <view class="recommendationList_info">
@@ -73,7 +73,7 @@
 		            <text>更多榜单</text>
 		        </view>
 		        <view class="recommendationList_wrap">
-		            <view class="recommendationList_item" @click='jump(item.name)' @tap='jump(item.name)' v-for="(item, index) in more" :key='index'>
+		            <view class="recommendationList_item" @click='jump(item.name)' v-for="(item, index) in more" :key='index'>
 		                <view class="recommendationList_img">
 		                    <image mode="widthFix" :src="item.coverImgUrl" />
 		                    <view class="recommendationList_info">
@@ -203,7 +203,7 @@
 					id = 23;
 				}
 				uni.navigateTo({
-					url: '../songSheet/index?id=' + id,
+					url: '../songSheet/index?id=' + id + '&type=1',
 					success() {
 						console.log('跳转歌单页面')
 					},

@@ -4,7 +4,8 @@
     "pages/jm-search/jm-search",
     "pages/menu/index",
     "pages/rankingList/index",
-    "pages/songSheet/index"
+    "pages/songSheet/index",
+    "pages/mv/index"
   ],
   "subPackages": [],
   "window": {
@@ -13,5 +14,6 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap90.json"
 }

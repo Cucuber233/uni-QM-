@@ -1,6 +1,6 @@
 <template>
 	<view class="songSheet">
-		<view class='play-list-bg' style="background-image: url()"/>
+		<view class='play-list-bg' :style="bg"/>
 		<view class="main">
 		  <!-- 头部 -->
 		  <view class="title_wrap">
@@ -14,9 +14,9 @@
 			  <!-- 头像及个人信息 -->
 			  <view class="content_info">
 				<view class="content_headPortrait">
-				  <image :src='data.creator.avatarUrl'></image>
+				  <image :src='creator.avatarUrl'></image>
 				</view>
-				<view class="content_nickname">{{data.creator.nickname}}</view>
+				<view class="content_nickname">{{creator.nickname}}</view>
 				<view class="iconfont icon-jiankuohaoxiyou"
 				 style="color:#F5F5F5;line-height: 73rpx;font-size:35rpx;"></view>
 			  </view>
@@ -28,27 +28,36 @@
 		  <!-- 图标菜单 -->
 		  <view class="iconMenu_wrap">
 			<view class="menu_item">
-			  <view class="iconfont icon-pinglun"
-			   style="font-size:60rpx;color:white;margin-left: 10rpx;"></view>
+			  <view style="font-size:60rpx;color:white;margin-left: 38rpx;">
+				  <text class="iconfont">&#xe65a;</text>
+			  </view>
 			  <view class="menu_title">{{data.commentCount/10000}}万</view>
 			</view>
 			<view class="menu_item">
-			  <view class="iconfont icon-fenxiang" style="font-size:60rpx;color:white"></view>
+			  <view style="font-size:60rpx;color:white">
+				  <text class="iconfont">&#xe7ad;</text>
+			  </view>
 			  <view class="menu_title">{{data.shareCount}}</view>
 			</view>
 			<view class="menu_item">
-			  <view class="iconfont icon-xiazai" style="font-size:60rpx;color:white"></view>
+			  <view style="font-size:60rpx;color:white">
+				  <text class="iconfont">&#xe62b;</text>
+			  </view>
 			  <view class="menu_title">下载</view>
 			</view>
 			<view class="menu_item">
-			  <view class="iconfont icon-duoxuan" style="font-size:60rpx;color:white"></view>
+			  <view style="font-size:60rpx;color:white">
+				  <text class="iconfont">&#xe57a;</text>
+			  </view>
 			  <view class="menu_title">多选</view>
 			</view>
 		  </view>
 		  <!-- 歌曲列表 -->
 		  <view class="songList_wrap">
 			<view class="songList_wrap_title">
-			  <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333"></view>
+			  <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333">
+				  <text class="iconfont">&#xe634;</text>
+			  </view>
 			  <view class="paly2">
 				播放全部
 				<text class="songCount">(共{{data.trackCount}}首)</text>
@@ -67,20 +76,23 @@
 				</view>
 				<view class="content_3">
 				  <!-- SQ音质图标处理 -->
-				  <text class="iconfont icon-sq" style="color:red;" />
+				  <view v-if='privileges[index].maxbr === 999000' style="display: inline-block; margin-right: 15rpx; background-color: #ecf0f1; border-radius: 10%; padding: 0 5rpx 0 5rpx;">
+				  	<text style="color:red;">SQ</text>
+				  </view>
 				  {{item.ar[0].name}}-{{item.al.name}}
 				</view>
 			  </view>
 			  <!-- MV图标处理 -->
 			  <view class='songArray_mv'>
 				<view>
-				  <view id="songArray_mv" class="iconfont icon-Youtube"></view>
-				</view>
-				<view wx:else>
-				  <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+				  <view @click='jump(item.mv)' id="songArray_mv" style="margin-bottom: 10rpx;" v-if="item.mv !== 0">
+					  <text class="iconfont" style="font-size: 40rpx;">&#xe79b;</text>
+				  </view>
 				</view>
 			  </view>
-			  <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;"></view>
+			  <view id="songArray_other" style="color:#CCCCCC;">
+				  <text class="iconfont" style="font-size: 35rpx;">&#xe506;</text>
+			  </view>
 			</view>
 		  </view>
 		</view>
@@ -92,22 +104,52 @@
 	export default{
 		name: 'songSheet',
 		onLoad(option) {
-			$http('top/list?idx=' + option.id).then(res => {
-				//console.log(res)
-				this.data = res.data.playlist
-				this.scriCount()
-			})
+			if(option.type == 1){
+				$http('top/list?idx=' + option.id).then(res => {
+					//console.log(res)
+					this.data = res.data.playlist
+					this.creator = res.data.playlist.creator
+					this.privileges = res.data.privileges
+					this.scriCount()
+					this.bg = `background-image: url(${this.creator.backgroundUrl})`
+				})
+			}
+			if(option.type == 0){
+				$http('playlist/detail?id=' + option.id).then(res => {
+					//console.log(res)
+					this.data = res.data.playlist
+					this.creator = res.data.playlist.creator
+					this.privileges = res.data.privileges
+					this.scriCount()
+					this.bg = `background-image: url(${this.creator.backgroundUrl})`
+				})
+			}
+			
 		},
 		methods:{
 			scriCount(){
 				let scr = this.data.subscribedCount/10000 + ''
 				this.subscribedCount = Number(scr.split('.')[0]) 
-			}	
+			},
+			jump(id){
+				console.log(id)
+				uni.navigateTo({
+					url:'../mv/index?id=' + id + '&type=0',
+					success() {
+						console.log("跳转mv页面")
+					},
+					fail() {
+						console.log('跳转mv页面失败')
+					}
+				})
+			}
 		},
 		data(){
 			return{
 				data: '',
-				subscribedCount: 'null'
+				subscribedCount: '',
+				creator: '',
+				bg: ''
 			}
 		}
 	}
@@ -354,5 +396,32 @@
   /* color: #CCCCCC; */
   width: 10%;
   line-height: 70rpx;
+}
+
+/* 字体图标 */
+/* @font-face {
+	font-family: 'iconfont';
+	src: url('https://at.alicdn.com/t/font_865816_17gjspmmrkti.ttf') format('truetype');
+}
+.test {
+	font-family: iconfont;
+	margin-left: 20rpx;
+} */
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('./icon/iconfont.eot');
+  src: url('./icon/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('./icon/iconfont.woff2') format('woff2'),
+      url('./icon/iconfont.woff') format('woff'),
+      url('./icon/iconfont.ttf') format('truetype'),
+      url('./icon/iconfont.svg#iconfont') format('svg');
+}
+.iconfont {
+	font-family: "iconfont" !important;
+	font-size: 60rpx;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 </style>

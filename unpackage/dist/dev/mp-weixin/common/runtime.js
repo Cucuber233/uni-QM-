@@ -104,7 +104,7 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/main/find/index":1,"components/tab_nav/main_nav":1,"pages/main/find/newReleases/index":1,"pages/main/find/newSong/index":1,"pages/main/find/recommendSong/index":1,"pages/main/find/swiper/index":1};
+/******/ 		var cssChunks = {"pages/main/find/index":1,"pages/main/my/index":1,"components/tab_nav/main_nav":1,"pages/main/find/newReleases/index":1,"pages/main/find/newSong/index":1,"pages/main/find/recommendSong/index":1,"pages/main/find/swiper/index":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
@@ -129,6 +129,7 @@
 /******/ 				linkTag.onerror = function(event) {
 /******/ 					var request = event && event.target && event.target.src || fullhref;
 /******/ 					var err = new Error("Loading CSS chunk " + chunkId + " failed.\n(" + request + ")");
+/******/ 					err.code = "CSS_CHUNK_LOAD_FAILED";
 /******/ 					err.request = request;
 /******/ 					delete installedCssChunks[chunkId]
 /******/ 					linkTag.parentNode.removeChild(linkTag)
