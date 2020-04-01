@@ -1,7 +1,7 @@
 <template>
 	<view class="main">
 		<view class="nav_wrap" style="margin: 10upx 0 10upx 0;">
-			<view class="img_menu" @click="menu_">
+			<view class="img_menu">
 				<image src="../../static/find/caidan.png" mode="widthFix"></image>
 			</view>
 		    <scroll-view scroll-x='ture'>
@@ -22,7 +22,8 @@
 				<image src="../../static/find/sousuo.png" mode="widthFix"></image>
 			</view>
 		</view>	
-		<swiper style='width:100%; height:3920upx' :indicator-dots="false" :autoplay="false" :interval="3000" :duration="500" :current='currentTab'>
+		<swiper :class="currentTab === 0 ? 'pageHeight_0' : currentTab === 1 ?  'pageHeight_1' : currentTab === 2 ? 'pageHeight_2' : 'pageHeight_3'"
+		@change='currentPage' :indicator-dots="false" :autoplay="false" :interval="3000" :duration="500" :current='currentTab'>
 			<swiper-item>
 				<view class="swiper_item">
 					<main-my />
@@ -97,22 +98,29 @@
 					}
 				})
 			},
-			menu_(){
-				uni.navigateTo({
-					url: '../menu/index',
-					success() {
-						consolve.log('跳转菜单页面')
-					},
-					fail() {
-						consolve.log('跳转菜单页面失败')	
-					}
-				})
+			currentPage(event){
+				this.currentTab = event.detail.current
 			}
 		}
 	}
 </script>
 
 <style>
+	.pageHeight_0{
+		width: 100%;
+		height: 1850upx;
+	}
+	.pageHeight_1{
+		width: 100%;
+		height: 3920upx;
+	}
+	.pageHeight_2{
+		
+	}
+	.pageHeight_3{
+		
+	}
+	
 	.nav_wrap{
 		display: flex;
 		font-size: 43upx;

@@ -1,30 +1,30 @@
 <template>
 	<view class="menu_wrap">
-	  <view class="menu_item" @click="jump(1)" @tap='jump(1)'>
+	  <view class="menu_item" @click="jump(1)">
 		<view class="menu_icon">
 			<image src="../../static/find/tuijian.png" mode="widthFix"></image>
 		</view>
 		<text>每日推荐</text>
 	  </view>
-	  <view class="menu_item" @click="jump(2)" @tap='jump(2)'>
+	  <view class="menu_item" @click="jump(2)">
 		<view class="menu_icon">
 			<image src="../../static/find/gedan.png" mode="widthFix"></image>
 		</view>
 		<text>歌单</text>
 	  </view>
-	  <view class="menu_item" @click="jump(3)" @tap='jump(3)'>
+	  <view class="menu_item" @click="jump(3)">
 		<view class="menu_icon">
 			<image src="../../static/find/paihangbang.png" mode="widthFix"></image>
 		</view>
 		<text>排行榜</text>
 	  </view>
-	  <view class="menu_item" @click="jump(4)" @tap='jump(4)'>
+	  <view class="menu_item" @click="jump(4)">
 		<view class="menu_icon">
 			<image src="../../static/find/diantai.png" mode="widthFix"></image>
 		</view>
 		<text>电台</text>
 	  </view>
-	  <view class="menu_item" @click="jump(5)" @tap='jump(5)'>
+	  <view class="menu_item" @click="jump(5)">
 		<view class="menu_icon">
 			<image src="../../static/find/zhibo.png" mode="widthFix"></image>
 		</view>

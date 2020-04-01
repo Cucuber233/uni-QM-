@@ -13,12 +13,6 @@
 			}
 		},
 		{
-			"path": "pages/menu/index",
-			"style": {
-				"navigationBarTitleText": "菜单"
-			}
-		},
-		{
 			"path": "pages/rankingList/index",
 			"style": {
 				"navigationBarTitleText": "排行榜"
@@ -34,6 +28,18 @@
 			"path": "pages/mv/index",
 			"style": {
 				"navigationBarTitleText": "视频MV"
+			}
+		},
+		{
+			"path": "pages/playSong/index",
+			"style": {
+				"navigationBarTitleText": "播放歌曲"
+			}
+		},
+		{
+			"path": "pages/playSong/talk/index",
+			"style": {
+				"navigationBarTitleText": "评论"
 			}
 		}
 	],

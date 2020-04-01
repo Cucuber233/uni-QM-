@@ -202,6 +202,7 @@
 				if (name == "云音乐嘻哈榜") {
 					id = 23;
 				}
+				console.log(id)
 				uni.navigateTo({
 					url: '../songSheet/index?id=' + id + '&type=1',
 					success() {

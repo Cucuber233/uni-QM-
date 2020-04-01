@@ -1,0 +1,93 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "336607",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "542896",
+      "name": "三点",
+      "font_class": "more1170511easyiconnet",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "3112175",
+      "name": "单曲循环",
+      "font_class": "xunhuan",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "3610488",
+      "name": "上一首",
+      "font_class": "shangyishou",
+      "unicode": "e514",
+      "unicode_decimal": 58644
+    },
+    {
+      "icon_id": "6899391",
+      "name": "心 爱心 (1)",
+      "font_class": "xinaixin",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "7973051",
+      "name": "循环",
+      "font_class": "loop-5",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "8669486",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "10208851",
+      "name": "上一首",
+      "font_class": "shangyishou1",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "10339967",
+      "name": "循环",
+      "font_class": "xunhuan1",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "10353559",
+      "name": "菜单",
+      "font_class": "caidan",
+      "unicode": "e50c",
+      "unicode_decimal": 58636
+    },
+    {
+      "icon_id": "13308591",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "13540625",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    }
+  ]
+}

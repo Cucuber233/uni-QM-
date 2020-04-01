@@ -68,7 +68,7 @@
 			</view>
 			<view class="songArray_wrap" v-for="(item, index) in data.tracks" :key='index'>
 			  <view class="songArray_inex">{{index+1}}</view>
-			  <view class="songArray_content">
+			  <view @click='jumpSong(index, privileges)' class="songArray_content">
 				<view class="content_1">
 				  {{item.name}}
 				  <!-- undefined处理 -->
@@ -85,7 +85,7 @@
 			  <!-- MV图标处理 -->
 			  <view class='songArray_mv'>
 				<view>
-				  <view @click='jump(item.mv)' id="songArray_mv" style="margin-bottom: 10rpx;" v-if="item.mv !== 0">
+				  <view @click='jumpMV(item.mv)' id="songArray_mv" style="margin-bottom: 10rpx;" v-if="item.mv !== 0">
 					  <text class="iconfont" style="font-size: 40rpx;">&#xe79b;</text>
 				  </view>
 				</view>
@@ -104,9 +104,11 @@
 	export default{
 		name: 'songSheet',
 		onLoad(option) {
+			this.type = option.type
+			this.id = option.id
 			if(option.type == 1){
 				$http('top/list?idx=' + option.id).then(res => {
-					//console.log(res)
+					console.log(res)
 					this.data = res.data.playlist
 					this.creator = res.data.playlist.creator
 					this.privileges = res.data.privileges
@@ -115,8 +117,9 @@
 				})
 			}
 			if(option.type == 0){
+				//排行榜详情
 				$http('playlist/detail?id=' + option.id).then(res => {
-					//console.log(res)
+					console.log(res)
 					this.data = res.data.playlist
 					this.creator = res.data.playlist.creator
 					this.privileges = res.data.privileges
@@ -124,14 +127,13 @@
 					this.bg = `background-image: url(${this.creator.backgroundUrl})`
 				})
 			}
-			
 		},
 		methods:{
 			scriCount(){
 				let scr = this.data.subscribedCount/10000 + ''
 				this.subscribedCount = Number(scr.split('.')[0]) 
 			},
-			jump(id){
+			jumpMV(id){
 				console.log(id)
 				uni.navigateTo({
 					url:'../mv/index?id=' + id + '&type=0',
@@ -142,6 +144,19 @@
 						console.log('跳转mv页面失败')
 					}
 				})
+			},
+			jumpSong(i, arr){
+				let type = this.type
+				let lastid = this.id
+				uni.navigateTo({
+					url: '../playSong/index?index=' + i + '&type=' + type + '&lastId=' + lastid,
+					success() {
+						console.log("跳转播放页面")
+					},
+					fail() {
+						console.log('跳转播放页面失败')
+					}
+				})
 			}
 		},
 		data(){
@@ -149,7 +164,9 @@
 				data: '',
 				subscribedCount: '',
 				creator: '',
-				bg: ''
+				bg: '',
+				type: '',
+				id: ''
 			}
 		}
 	}
