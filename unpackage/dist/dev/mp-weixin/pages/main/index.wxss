@@ -1,4 +1,16 @@
 
+.pageHeight_0{
+	width: 100%;
+	height: 1850rpx;
+}
+.pageHeight_1{
+	width: 100%;
+	height: 3920rpx;
+}
+.pageHeight_2{
+}
+.pageHeight_3{
+}
 .nav_wrap{
 	display: -webkit-box;
 	display: -webkit-flex;

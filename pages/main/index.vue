@@ -89,7 +89,7 @@
 			},
 			search_choose(){
 				uni.navigateTo({
-					url: '../jm-search/jm-search',
+					url: '../jmSearch/jmSearch',
 					success() {
 						console.log('跳转搜索页面')
 					},

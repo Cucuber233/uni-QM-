@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */,
-/* 1 */
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
+
+/***/ 1:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -247,7 +247,7 @@ var CONTEXT_API_RE = /^create|Manager$/;
 
 var ASYNC_API = ['createBLEConnection'];
 
-var CALLBACK_API_RE = /^on/;
+var CALLBACK_API_RE = /^on|^off/;
 
 function isContextApi(name) {
   return CONTEXT_API_RE.test(name);
@@ -1554,7 +1554,137 @@ var uni$1 = uni;var _default =
 uni$1;exports.default = _default;
 
 /***/ }),
-/* 2 */
+
+/***/ 14:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -7583,7 +7713,80 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 3 */
+
+/***/ 21:
+/*!***************************************************!*\
+  !*** H:/AppCode/uni-Music/QM音乐/untils/request.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = $http;var _api = __webpack_require__(/*! ./api.js */ 22);
+
+//const baseurl  = "https://netease.lzcdev.xyz/"
+
+function $http(path) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: _api.baseurl + path,
+      method: 'GET',
+      success: function success(res) {
+        resolve(res);
+      },
+      fail: function fail() {
+        reject('请求失败');
+      } });
+
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 22:
+/*!***********************************************!*\
+  !*** H:/AppCode/uni-Music/QM音乐/untils/api.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+exports.baseurl = "https://netease.lzcdev.xyz/";
+
+/***/ }),
+
+/***/ 23:
+/*!**************************************************!*\
+  !*** H:/AppCode/uni-Music/QM音乐/untils/search.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;var _api = __webpack_require__(/*! ./api.js */ 22);
+
+function _default(parmas) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: _api.baseurl + 'search',
+      data: {
+        keywords: parmas },
+
+      success: function success(res) {
+        resolve(res);
+      },
+      fail: function fail() {
+        console.log('请求失败');
+      } });
+
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -7613,7 +7816,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /*!********************************************!*\
   !*** H:/AppCode/uni-Music/QM音乐/pages.json ***!
   \********************************************/
@@ -7624,7 +7828,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /*!*******************************************************!*\
   !*** ./node_modules/@dcloudio/uni-stat/dist/index.js ***!
   \*******************************************************/
@@ -8510,17 +8715,202 @@ main();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 6 */
+
+/***/ 6:
 /*!******************************************************!*\
   !*** ./node_modules/@dcloudio/uni-stat/package.json ***!
   \******************************************************/
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26820200330001","_inBundle":false,"_integrity":"sha512-Qzo5LcBl+abS7DvpyTXBYW2VVYHVcHBewduQecjn/gbzAn9e90aOVn02/2VZ82wV6TBiDXbGyloXojOY3InzWA==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26820200330001.tgz","_shasum":"880c5c5a4920bb35e9cf691eeb7427a7bf67ffd7","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"57ef7f7b5b6164a74ec425ff12f9fe0a1147841a","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26820200330001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26920200402001","_inBundle":false,"_integrity":"sha512-Mdhd/IRuUMHWPj3TtWrBb0kghRBA0YiO2L2THMFvhCTfQDSoSq1vwOdAx5n/8fIORAvG0uVQoYl73xeVFZML5A==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26920200402001.tgz","_shasum":"5f66f5dc252ac00c6064857dee8251ee51aa2391","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"bfdbb7b3000599679ef8cb29a969e6bd447b00c7","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26920200402001"};
 
 /***/ }),
-/* 7 */
+
+/***/ 64:
+/*!**************************************************************!*\
+  !*** H:/AppCode/uni-Music/QM音乐/pages/playSong/ChooseSong.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = ChooseSong;var _request = _interopRequireDefault(__webpack_require__(/*! ../../untils/request.js */ 21));
+var _nextSong = _interopRequireDefault(__webpack_require__(/*! ./nextSong.js */ 65));
+var _lastSong = _interopRequireDefault(__webpack_require__(/*! ./lastSong.js */ 66));
+var _getLyrc = _interopRequireDefault(__webpack_require__(/*! ./getLyrc.js */ 67));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function ChooseSong(choose) {var _this = this;
+  if (choose == 1) {
+    if (this.indexSong > 0) {
+      this.indexSong -= 1;
+      var _last_id = this.privileges[this.indexSong].id;
+      this.audioContext.destroy();
+      var that = this;
+      _lastSong.default.call(this, _last_id).then(function (res) {
+        that.SongStatus = true;
+      }, function (err) {
+        _this.SongStatus = false;
+      });
+      (0, _request.default)('song/detail?ids=' + _last_id).then(function (res) {
+        //console.log(res)
+        _this.Song = res.data.songs[0];
+        _this.SongerName = res.data.songs[0].ar[0].name;
+        var SongId = res.data.songs[0].id;
+      });
+      //获取歌词
+      _getLyrc.default.call(this, _last_id);
+    }
+  }
+  if (choose == 2) {
+    if (this.privileges.length > this.indexSong) {
+      this.indexSong += 1;
+      var next_id = this.privileges[this.indexSong].id;
+      this.audioContext.destroy();
+      var _that = this;
+      _nextSong.default.call(this, next_id).then(function (res) {
+        _that.SongStatus = true;
+      }, function (err) {
+        _that.SongStatus = false;
+      });
+      (0, _request.default)('song/detail?ids=' + next_id).then(function (res) {
+        //console.log(res)
+        _this.Song = res.data.songs[0];
+        _this.SongerName = res.data.songs[0].ar[0].name;
+        var SongId = res.data.songs[0].id;
+      });
+      //获取歌词
+      _getLyrc.default.call(this, last_id);
+    }
+  }
+}
+
+/***/ }),
+
+/***/ 65:
+/*!************************************************************!*\
+  !*** H:/AppCode/uni-Music/QM音乐/pages/playSong/nextSong.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = chooseSong;var _request = _interopRequireDefault(__webpack_require__(/*! ../../untils/request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function chooseSong(SongId) {var _this = this;
+  return new Promise(function (resolve, reject) {
+    (0, _request.default)('song/url?id=' + SongId).then(function (res) {
+      //console.log(res)
+      _this.audioContext = uni.createInnerAudioContext();
+      _this.audioContext.autoplay = true;
+      _this.audioContext.src = res.data.data[0].url;
+      _this.audioContext.onPlay(function () {
+        console.log('开始播放');
+        resolve('播放成功');
+      });
+      _this.audioContext.onError(function (res) {
+        console.log('播放失败');
+      });
+      _this.audioContext.onEnded(function () {
+        that.SongStatus = true;
+      });
+    });
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 66:
+/*!************************************************************!*\
+  !*** H:/AppCode/uni-Music/QM音乐/pages/playSong/lastSong.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = chooseSong;var _request = _interopRequireDefault(__webpack_require__(/*! ../../untils/request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function chooseSong(SongId) {var _this = this;
+  return new Promise(function (resolve, rejject) {
+    (0, _request.default)('song/url?id=' + SongId).then(function (res) {
+      // console.log(this.currentSongId)
+      // 	console.log(res)
+      _this.audioContext = uni.createInnerAudioContext();
+      _this.audioContext.autoplay = true;
+      _this.audioContext.src = res.data.data[0].url;
+      _this.audioContext.onPlay(function () {
+        resolve('播放成功');
+      });
+      _this.audioContext.onError(function (res) {
+        console.log('播放失败');
+      });
+      _this.audioContext.onEnded(function () {
+        that.SongStatus = true;
+      });
+    });
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 67:
+/*!***********************************************************!*\
+  !*** H:/AppCode/uni-Music/QM音乐/pages/playSong/getLyrc.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = getLyrc;var _request = _interopRequireDefault(__webpack_require__(/*! ../../untils/request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function getLyrc(SongId) {var _this = this;
+  //获取歌词
+  (0, _request.default)('lyric?id=' + SongId).then(function (res) {
+    //console.log(res)
+    var ly = res.data.lrc.lyric.split(']');
+    var lrc = ly.join(',');
+    var lyrc = lrc.split('[');
+    _this.arr = [];
+    lyrc.forEach(function (el) {
+      //console.log(el)
+      var lxs = el.split(',');
+      //console.log(lxs)
+      _this.arr.push(lxs[1]);
+    });
+    var array = _this.arr;
+    var one_ = _this.one;
+    var two_ = _this.two;
+    var three_ = _this.three;
+    var four_ = _this.four;
+    for (var i = 0; i < 26; i++) {
+      one_.push(array[i]);
+    }
+    for (var _i = 26; _i < 52; _i++) {
+      two_.push(array[_i]);
+    }
+    if (array.length > 52) {
+      for (var _i2 = 52; _i2 < 78; _i2++) {
+        three_.push(array[_i2]);
+      }
+    }
+    if (array.length > 78) {
+      for (var _i3 = 78; _i3 < 104; _i3++) {
+        four_.push(array[_i3]);
+      }
+    }
+    _this.arr = array;
+    _this.one = one_;
+    _this.two = two_;
+    _this.three = three_;
+    _this.four = four_;
+  });
+}
+
+/***/ }),
+
+/***/ 7:
 /*!*************************************************************!*\
   !*** H:/AppCode/uni-Music/QM音乐/pages.json?{"type":"style"} ***!
   \*************************************************************/
@@ -8528,10 +8918,11 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/main/index": { "navigationBarTitleText": "QM音乐" }, "pages/jm-search/jm-search": { "navigationBarTitleText": "搜索" }, "pages/menu/index": { "navigationBarTitleText": "菜单" }, "pages/rankingList/index": { "navigationBarTitleText": "排行榜" }, "pages/songSheet/index": { "navigationBarTitleText": "歌单" }, "pages/mv/index": { "navigationBarTitleText": "视频MV" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "QM音乐", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/main/index": { "navigationBarTitleText": "QM音乐" }, "pages/jm-search/jm-search": { "navigationBarTitleText": "搜索" }, "pages/rankingList/index": { "navigationBarTitleText": "排行榜" }, "pages/songSheet/index": { "navigationBarTitleText": "歌单" }, "pages/mv/index": { "navigationBarTitleText": "视频MV" }, "pages/playSong/index": { "navigationBarTitleText": "播放歌曲" }, "pages/playSong/talk/index": { "navigationBarTitleText": "评论" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "QM音乐", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
-/* 8 */
+
+/***/ 8:
 /*!************************************************************!*\
   !*** H:/AppCode/uni-Music/QM音乐/pages.json?{"type":"stat"} ***!
   \************************************************************/
@@ -8541,214 +8932,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__D0C8DFC" };exports.default = _default;
 
-/***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */
-/*!***************************************************!*\
-  !*** H:/AppCode/uni-Music/QM音乐/untils/request.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = $http;var _api = __webpack_require__(/*! ./api.js */ 22);
-
-//const baseurl  = "https://netease.lzcdev.xyz/"
-
-function $http(path) {
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      url: _api.baseurl + path,
-      method: 'GET',
-      success: function success(res) {
-        resolve(res);
-      },
-      fail: function fail() {
-        reject('请求失败');
-      } });
-
-  });
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 22 */
-/*!***********************************************!*\
-  !*** H:/AppCode/uni-Music/QM音乐/untils/api.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-exports.baseurl = "https://netease.lzcdev.xyz/";
-
-/***/ }),
-/* 23 */
-/*!**************************************************!*\
-  !*** H:/AppCode/uni-Music/QM音乐/untils/search.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;var _api = __webpack_require__(/*! ./api.js */ 22);
-
-function _default(parmas) {
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      url: _api.baseurl + 'search',
-      data: {
-        keywords: parmas },
-
-      success: function success(res) {
-        resolve(res);
-      },
-      fail: function fail() {
-        console.log('请求失败');
-      } });
-
-  });
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
 /***/ })
-]]);
+
+}]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

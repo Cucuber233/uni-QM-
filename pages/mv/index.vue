@@ -60,7 +60,7 @@
 		        </view>
 		      </view>
 		      <view>
-		        <view>
+		        <view @click="Jump_comment">
 		          <text class="iconfont" style="font-size:60rpx;color:#242323">&#xe623;</text>
 		        </view>
 		        <view class="video_menu_text">
@@ -185,6 +185,9 @@
 		    </view>
 		  </view>
 		</view>
+		<view @click="back_top" class="TopBack" v-if="rel">
+			<text style="color:#007AFF">回到顶部</text>
+		</view>
 	</view>
 </template>
 
@@ -193,6 +196,7 @@
 	export default{
 		name: 'movie',
 		onLoad(option) {
+			this.MvId = option.id
 			//获取相关视频
 			$http('related/allvideo?id=' + option.id).then(res => {
 				//console.log(res)
@@ -272,22 +276,55 @@
 						}
 					})
 				}
+			},
+			onReachBottom(){
+				let page_commnet = this.page * 20;
+				this.page += 1;
+				//获取更多评论
+				$http('comment/mv?id=' + this.MvId + "&offset=" + page_commnet).then(res => {
+					//console.log(res)
+					this.newComments.push(...res.data.comments)
+				})
+			},
+			onPageScroll(data){
+				console.log(data.scrollTop)
+				if(data.scrollTop > 6000){
+					this.rel = true
+				}else{
+					this.rel = false
+				}
+			},
+			back_top(){
+				uni.pageScrollTo({
+					scrollTop: 0
+				})
+			},
+			Jump_comment(){
+				uni.pageScrollTo({
+					scrollTop: 970
+				})
 			}
 		},
 		data(){
 			return {
+				MvId: '',
 				mvDetail: '',
 				mvUrl: '',
 				relevantMv: '',
 				hotComments: '',
 				newComments: '',
-				total: ''
+				total: '',
+				page: 0,
+				rel: ''
 			}
 		}
 	}
 </script>
 
 <style scoped>
+	.movie{
+		position: relative;
+	}
 .main {
 	width: 100%;
 }
@@ -538,5 +575,13 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.TopBack{
+	position: fixed;
+	background-color: #000000;
+	z-index: 1;
+	bottom: 20rpx;
+	right: 20rpx;
 }
 </style>

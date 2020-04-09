@@ -2,10 +2,11 @@
   "pages": [
     "pages/main/index",
     "pages/jm-search/jm-search",
-    "pages/menu/index",
     "pages/rankingList/index",
     "pages/songSheet/index",
-    "pages/mv/index"
+    "pages/mv/index",
+    "pages/playSong/index",
+    "pages/playSong/talk/index"
   ],
   "subPackages": [],
   "window": {
@@ -15,5 +16,5 @@
     "backgroundColor": "#F8F8F8"
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap90.json"
+  "sitemapLocation": "sitemap62.json"
 }

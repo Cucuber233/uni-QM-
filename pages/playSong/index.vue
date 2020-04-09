@@ -43,13 +43,13 @@
 						<view class='play-bar'>
 							<view class="play_item">
 								<view>
-									<text @click="lastSong" class="iconfont">&#xe61d;</text>
+									<text @click="lastSong_" class="iconfont">&#xe61d;</text>
 								</view>
 								<view>
 									<text @click='status' class="iconfont" style="font-size: 120rpx">{{SongStatus == 0 ?  '&#xe608;' : '&#xe61e;'}}</text>
 								</view>
 								<view>
-									<text @click='nextSong' class="iconfont">&#xe514;</text>
+									<text @click='nextSong_' class="iconfont">&#xe514;</text>
 								</view>
 							</view>
 						</view>
@@ -61,13 +61,13 @@
 					<swiper-item class="swiper_colum_item">
 						<text  v-for='(item, index) in one' :key='index' class="position_item">{{item}}</text>
 					</swiper-item>
-					<swiper-item class="swiper_colum_item">
+					<swiper-item class="swiper_colum_item" v-if='arr.length > 26'>
 						<text  v-for='(item, index) in two' :key='index' class="position_item">{{item}}</text>
 					</swiper-item>
-					<swiper-item class="swiper_colum_item">
+					<swiper-item class="swiper_colum_item" v-if='arr.length > 52'>
 						<text  v-for='(item, index) in three' :key='index' class="position_item">{{item}}</text>
 					</swiper-item>
-					<swiper-item class="swiper_colum_item">
+					<swiper-item class="swiper_colum_item" v-if='arr.length > 78'>
 						<text  v-for='(item, index) in four' :key='index' class="position_item">{{item}}</text>
 					</swiper-item>
 				</swiper>
@@ -78,8 +78,8 @@
 
 <script>
 	import $http from '../../untils/request.js'
-	import nextSong from './nextSong.js'
-	import lastSong from './lastSong.js'
+	import ChooseSong from './ChooseSong.js'
+	import getLyrc from './getLyrc.js'
 	export default {
 		data() {
 			return {
@@ -157,82 +157,21 @@
 						})
 					})
 					//获取歌词
-					$http('lyric?id=' + SongId).then(res => {
-						//console.log(res)
-						let ly = res.data.lrc.lyric.split(']')
-						let lrc = ly.join(',')
-						let lyrc = lrc.split('[')
-						this.arr = []
-						lyrc.forEach(el => {
-							//console.log(el)
-							let lxs = el.split(',')
-							//console.log(lxs)
-							this.arr.push(lxs[1])
-						})
-						let array = this.arr
-						let one_ = this.one
-						let two_ = this.two
-						let three_ = this.three
-						let four_ = this.four
-						for(let i=0;i<26;i++){
-							one_.push(array[i])
-						}
-						for(let i=26;i<52;i++){
-							two_.push(array[i])
-						}
-						if(array.length > 52){
-							for(let i=52;i<78;i++){
-								three_.push(array[i])
-							}
-						}
-						if(array.length > 78){
-							for(let i=78;i<104;i++){
-								four_.push(array[i])
-							}
-						}
-					})
+					getLyrc.call(this,SongId)
+					console.log(this.arr)
 				})
 			},3000)
 		},
 		methods: {
-			lastSong(){
-				if(this.indexSong > 0){
-					this.indexSong -= 1
-					let last_id = this.privileges[this.indexSong].id
-					this.audioContext.destroy()
-					let that = this
-					lastSong.call(this,last_id).then(res => {
-						that.SongStatus = true
-					},err => {
-						this.SongStatus = false
-					})
-					$http('song/detail?ids=' + last_id).then(res => {
-						//console.log(res)
-						this.Song = res.data.songs[0]
-						this.SongerName = res.data.songs[0].ar[0].name
-						let SongId = res.data.songs[0].id
-					})	
-				}
+			lastSong_(){
+				let choose = 1
+				ChooseSong.call(this,choose)
+				console.log(this.arr)
 			},
-			nextSong(){
-				if(this.privileges.length > this.indexSong){
-					this.indexSong += 1
-					let next_id = this.privileges[this.indexSong].id
-					this.audioContext.destroy()
-					let that = this
-					nextSong.call(this,next_id).then(res => {
-						that.SongStatus = true
-					},err => {
-						that.SongStatus = false
-					})
-					$http('song/detail?ids=' + next_id).then(res => {
-						console.log(res)
-						this.Song = res.data.songs[0]
-						this.SongerName = res.data.songs[0].ar[0].name
-						let SongId = res.data.songs[0].id
-					})	
-				}
-				
+			nextSong_(){
+				let choose = 2
+				ChooseSong.call(this,choose)
+				console.log(this.arr)
 			},
 			status(){
 				this.SongStatus = !this.SongStatus
@@ -244,7 +183,7 @@
 			},
 			jumpTalk(){
 				let songId = this.currentID
-				console.log(this.SongId)
+				//console.log(this.SongId)
 				uni.navigateTo({
 					url: './talk/index?id=' + songId,
 					success() {

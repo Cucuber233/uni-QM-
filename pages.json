@@ -7,7 +7,7 @@
 			}
 		},
 		{
-			"path": "pages/jm-search/jm-search",
+			"path": "pages/jmSearch/jmSearch",
 			"style": {
 				"navigationBarTitleText": "搜索"
 			}

@@ -92,11 +92,14 @@
 		data(){
 			return {
 				hotComments: '',
-				newComments: ''
+				newComments: '',
+				page: 0,
+				MusicId: ''
 			}
 		},
 		onLoad(option) {
 			console.log(option.id)
+			this.MusicId = option.id
 			//获取评论
 			$http('comment/music?id=' + option.id).then(res => {
 				//console.log(res)
@@ -115,6 +118,15 @@
 				 let min = time.getMinutes()
 				 return `${year}年${mon}月${date}日${hour}:${min}`
 			},
+			onReachBottom(){
+				let page_commnet = this.page * 20;
+				this.page += 1;
+				//获取更多评论
+				$http('comment/music?id=' + this.MusicId + "&offset=" + page_commnet).then(res => {
+					console.log(res)
+					this.newComments.push(...res.data.comments)
+				})
+			}
 		}
 	}
 </script>

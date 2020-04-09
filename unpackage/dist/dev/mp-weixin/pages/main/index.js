@@ -190,6 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _request = _interopRequireDefault(__webpack_require__(/*! ../../untils/request.js */ 21));
 
 
@@ -244,12 +245,8 @@ var _search = _interopRequireDefault(__webpack_require__(/*! ../../untils/search
 //
 //
 //
-var mainFind = function mainFind() {__webpack_require__.e(/*! require.ensure | pages/main/find/index */ "pages/main/find/index").then((function () {return resolve(__webpack_require__(/*! ./find/index.vue */ 66));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mainFirend = function mainFirend() {__webpack_require__.e(/*! require.ensure | pages/main/firend/index */ "pages/main/firend/index").then((function () {return resolve(__webpack_require__(/*! ./firend/index.vue */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mainMy = function mainMy() {__webpack_require__.e(/*! require.ensure | pages/main/my/index */ "pages/main/my/index").then((function () {return resolve(__webpack_require__(/*! ./my/index.vue */ 78));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mainVideo = function mainVideo() {__webpack_require__.e(/*! require.ensure | pages/main/video/index */ "pages/main/video/index").then((function () {return resolve(__webpack_require__(/*! ./video/index.vue */ 85));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { name: 'main_', components: { mainFind: mainFind, mainFirend: mainFirend, mainMy: mainMy, mainVideo: mainVideo }, mounted: function mounted() {uni.$on('goJump', function (data) {uni.navigateTo({ url: '../songSheet/index?id=' + data.id + '&type=0', success: function success() {console.log('跳转歌单页面');}, fail: function fail() {console.log('跳转歌单额面失败');} });});}, data: function data() {return { currentTab: 1, chooseHeight: null };}, methods: { swichNav: function swichNav(i) {this.currentTab = i;}, search_choose: function search_choose() {uni.navigateTo({ url: '../jm-search/jm-search', success: function success() {console.log('跳转搜索页面');}, fail: function fail() {console.log("跳转失败");} });}, menu_: function menu_() {uni.navigateTo({ url: '../menu/index', success: function success() {consolve.log('跳转菜单页面');},
-        fail: function fail() {
-          consolve.log('跳转菜单页面失败');
-        } });
-
-    } } };exports.default = _default;
+//
+var mainFind = function mainFind() {__webpack_require__.e(/*! require.ensure | pages/main/find/index */ "pages/main/find/index").then((function () {return resolve(__webpack_require__(/*! ./find/index.vue */ 78));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mainFirend = function mainFirend() {__webpack_require__.e(/*! require.ensure | pages/main/firend/index */ "pages/main/firend/index").then((function () {return resolve(__webpack_require__(/*! ./firend/index.vue */ 85));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mainMy = function mainMy() {__webpack_require__.e(/*! require.ensure | pages/main/my/index */ "pages/main/my/index").then((function () {return resolve(__webpack_require__(/*! ./my/index.vue */ 90));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mainVideo = function mainVideo() {__webpack_require__.e(/*! require.ensure | pages/main/video/index */ "pages/main/video/index").then((function () {return resolve(__webpack_require__(/*! ./video/index.vue */ 97));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { name: 'main_', components: { mainFind: mainFind, mainFirend: mainFirend, mainMy: mainMy, mainVideo: mainVideo }, mounted: function mounted() {uni.$on('goJump', function (data) {uni.navigateTo({ url: '../songSheet/index?id=' + data.id + '&type=0', success: function success() {console.log('跳转歌单页面');}, fail: function fail() {console.log('跳转歌单额面失败');} });});}, data: function data() {return { currentTab: 1, chooseHeight: null };}, methods: { swichNav: function swichNav(i) {this.currentTab = i;}, search_choose: function search_choose() {uni.navigateTo({ url: '../jm-search/jm-search', success: function success() {console.log('跳转搜索页面');}, fail: function fail() {console.log("跳转失败");} });}, currentPage: function currentPage(event) {this.currentTab = event.detail.current;} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
